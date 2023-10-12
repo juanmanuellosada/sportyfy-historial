@@ -15,6 +15,7 @@ public class Historial implements Observer {
 
     private void guardarPronostico(Pronostico p){
         pronosticosRealizados.add(p);
+        System.out.println("Pronóstico: "+p.getEquipoGanador().getNombre());
     }
 
     @Override
