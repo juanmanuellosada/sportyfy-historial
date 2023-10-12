@@ -20,6 +20,10 @@ public class Historial implements Observer {
         System.out.println("Pronostico: "+p.getEquipoGanador().getNombre());
     }
 
+    public  List<Pronostico> getPronosricosRealizados(){
+        return this.pronosticosRealizados;
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         if (o instanceof SportyfyCore) {
