@@ -1,5 +1,6 @@
 package sportyfy.historial;
 
+import lombok.Getter;
 import sportyfy.core.Pronostico;
 import sportyfy.core.core.SportyfyCore;
 
@@ -7,6 +8,7 @@ import java.util.*;
 
 @SuppressWarnings("deprecation")
 public class Historial implements Observer {
+    @Getter
     List<Pronostico> pronosticosRealizados;
 
     public Historial(){
@@ -15,7 +17,7 @@ public class Historial implements Observer {
 
     private void guardarPronostico(Pronostico p){
         pronosticosRealizados.add(p);
-        System.out.println("Pronóstico: "+p.getEquipoGanador().getNombre());
+        System.out.println("Pronostico: "+p.getEquipoGanador().getNombre());
     }
 
     @Override
