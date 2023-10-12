@@ -9,7 +9,7 @@ import java.util.*;
 public class Historial implements Observer {
     List<Pronostico> pronosticosRealizados;
 
-    private Historial(){
+    public Historial(){
         pronosticosRealizados = new ArrayList<>();
     }
 
