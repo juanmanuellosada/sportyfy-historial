@@ -2,6 +2,7 @@ package sportyfy.historial;
 
 import lombok.Getter;
 import sportyfy.core.Pronostico;
+import sportyfy.core.PronosticoNull;
 import sportyfy.core.core.SportyfyCore;
 
 import java.util.*;
@@ -16,11 +17,13 @@ public class Historial implements Observer {
     }
 
     private void guardarPronostico(Pronostico p){
-        this.pronosticosRealizados.add(p);
-        System.out.println("Pronostico: "+p.getEquipoGanador().getNombre());
+        if(p != null)
+            this.pronosticosRealizados.add(p);
+        else
+            this.pronosticosRealizados.add(new PronosticoNull());
     }
 
-    public  List<Pronostico> getPronosricosRealizados(){
+    public  List<Pronostico> getPronosticosRealizados(){
         return this.pronosticosRealizados;
     }
 
