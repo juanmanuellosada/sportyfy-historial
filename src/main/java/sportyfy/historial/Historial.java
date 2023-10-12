@@ -9,14 +9,14 @@ import java.util.*;
 @SuppressWarnings("deprecation")
 public class Historial implements Observer {
     @Getter
-    List<Pronostico> pronosticosRealizados;
+    private List<Pronostico> pronosticosRealizados;
 
     public Historial(){
-        pronosticosRealizados = new ArrayList<>();
+        this.pronosticosRealizados = new ArrayList<>();
     }
 
     private void guardarPronostico(Pronostico p){
-        pronosticosRealizados.add(p);
+        this.pronosticosRealizados.add(p);
         System.out.println("Pronostico: "+p.getEquipoGanador().getNombre());
     }
 
@@ -26,6 +26,7 @@ public class Historial implements Observer {
             SportyfyCore sportyfyCore = (SportyfyCore) o;
             Pronostico pronosticoActual = sportyfyCore.getPronosticoActual();
             guardarPronostico(pronosticoActual);
+
         }
     }
 }
