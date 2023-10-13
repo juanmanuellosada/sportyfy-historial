@@ -21,7 +21,7 @@ public class Historial implements Observer {
             this.pronosticosRealizados.add(p);
         else {
 //            PronosticoNullParaHistorial pronosticoNull = new PronosticoNullParaHistorial(p.getEquipoLocal(),p.getEquipoVisitante(),null);
-            this.pronosticosRealizados.add( new PronosticoNull());
+            this.pronosticosRealizados.add( new PronosticoNull(p.getPartidoFuturo()));
         }
     }
 
