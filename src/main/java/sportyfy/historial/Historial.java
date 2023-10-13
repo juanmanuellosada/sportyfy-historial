@@ -1,8 +1,8 @@
 package sportyfy.historial;
 
 import lombok.Getter;
-import sportyfy.core.PronosticoNullParaHistorial;
-import sportyfy.core.PronosticoParaHistorial;
+import sportyfy.core.Pronostico;
+import sportyfy.core.PronosticoNull;
 import sportyfy.core.core.SportyfyCore;
 
 import java.util.*;
@@ -10,22 +10,22 @@ import java.util.*;
 @SuppressWarnings("deprecation")
 public class Historial implements Observer {
     @Getter
-    private List<PronosticoParaHistorial> pronosticosRealizados;
+    private List<Pronostico> pronosticosRealizados;
 
     public Historial(){
         this.pronosticosRealizados = new ArrayList<>();
     }
 
-    private void guardarPronostico(PronosticoParaHistorial p){
+    private void guardarPronostico(Pronostico p){
         if(p != null)
             this.pronosticosRealizados.add(p);
         else {
 //            PronosticoNullParaHistorial pronosticoNull = new PronosticoNullParaHistorial(p.getEquipoLocal(),p.getEquipoVisitante(),null);
-            this.pronosticosRealizados.add( new PronosticoNullParaHistorial());
+            this.pronosticosRealizados.add( new PronosticoNull());
         }
     }
 
-    public  List<PronosticoParaHistorial> getPronosticosRealizados(){
+    public  List<Pronostico> getPronosticosRealizados(){
         return this.pronosticosRealizados;
     }
 
@@ -33,7 +33,7 @@ public class Historial implements Observer {
     public void update(Observable o, Object arg) {
         if (o instanceof SportyfyCore) {
             SportyfyCore sportyfyCore = (SportyfyCore) o;
-            PronosticoParaHistorial pronosticoActual = sportyfyCore.getPronosticoActualParaHistorial();
+            Pronostico pronosticoActual = sportyfyCore.getPronosticoActual();
             guardarPronostico(pronosticoActual);
 
         }
