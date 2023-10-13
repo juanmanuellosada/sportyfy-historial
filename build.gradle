@@ -14,7 +14,7 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.28'
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-    implementation 'com.github.juanmanuellosada:sportyfy-core:3bfeeb0d1d55079da6cf4c0a56d6ad3502edfd1a'
+    implementation 'com.github.juanmanuellosada:sportyfy-core:554070986ee0538dcba26a1ac9fe2fec459d1170'
 
 }
 
