@@ -22,7 +22,7 @@ public class Historial implements Observer {
         else {
             PronosticoNullParaHistorial pronosticoNull = new PronosticoNullParaHistorial();
             pronosticoNull.setEquipoLocal(p.getEquipoLocal());
-            pronosticoNull.setEquipoGanador(p.getEquipoGanador());
+            pronosticoNull.setEquipoVisitante(p.getEquipoVisitante());
             this.pronosticosRealizados.add(pronosticoNull);
         }
     }
