@@ -20,7 +20,6 @@ public class Historial implements Observer {
         if(p != null)
             this.pronosticosRealizados.add(p);
         else {
-//            PronosticoNullParaHistorial pronosticoNull = new PronosticoNullParaHistorial(p.getEquipoLocal(),p.getEquipoVisitante(),null);
             this.pronosticosRealizados.add( new PronosticoNull(p.getPartidoFuturo()));
         }
     }
@@ -35,7 +34,6 @@ public class Historial implements Observer {
             SportyfyCore sportyfyCore = (SportyfyCore) o;
             Pronostico pronosticoActual = sportyfyCore.getPronosticoActual();
             guardarPronostico(pronosticoActual);
-
         }
     }
 }
