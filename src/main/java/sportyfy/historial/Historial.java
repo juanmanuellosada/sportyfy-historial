@@ -4,7 +4,6 @@ import lombok.Getter;
 import sportyfy.core.Pronostico;
 import sportyfy.core.PronosticoNull;
 import sportyfy.core.core.SportyfyCore;
-
 import java.util.*;
 
 @SuppressWarnings("deprecation")
@@ -17,7 +16,7 @@ public class Historial implements Observer {
     }
 
     private void guardarPronostico(Pronostico p){
-        if(p != null)
+        if(p.getEquipoGanador() != null)
             this.pronosticosRealizados.add(p);
         else {
             this.pronosticosRealizados.add( new PronosticoNull(p.getPartidoFuturo()));
