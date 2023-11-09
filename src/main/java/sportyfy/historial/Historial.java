@@ -1,38 +1,31 @@
 package sportyfy.historial;
 
 import lombok.Getter;
-import sportyfy.core.Pronostico;
-import sportyfy.core.PronosticoNull;
-import sportyfy.core.core.SportyfyCore;
+import sportyfy.core.entidades.partido.Partido;
+import sportyfy.core.entidades.resultado.Resultado;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.*;
 
-@SuppressWarnings("deprecation")
-public class Historial implements Observer {
-    @Getter
-    private List<Pronostico> pronosticosRealizados;
+@Getter
+public class Historial implements PropertyChangeListener{
+    private Map<Partido, Resultado> pronosticosRealizados;
 
     public Historial(){
-        this.pronosticosRealizados = new ArrayList<>();
+        this.pronosticosRealizados = new HashMap<>();
     }
 
-    private void guardarPronostico(Pronostico p){
-        if(p.getEquipoGanador() != null)
-            this.pronosticosRealizados.add(p);
-        else {
-            this.pronosticosRealizados.add( new PronosticoNull(p.getPartidoFuturo()));
-        }
-    }
-
-    public  List<Pronostico> getPronosticosRealizados(){
-        return this.pronosticosRealizados;
-    }
+//    public  Map<Partido, Resultado> getPronosticosRealizados(){
+//        return this.pronosticosRealizados;
+//    }
 
     @Override
-    public void update(Observable o, Object arg) {
-        if (o instanceof SportyfyCore) {
-            SportyfyCore sportyfyCore = (SportyfyCore) o;
-            Pronostico pronosticoActual = sportyfyCore.getPronosticoActual();
-            guardarPronostico(pronosticoActual);
+    public void propertyChange(PropertyChangeEvent evt) {
+        if ("resultado".equals(evt.getPropertyName())) {
+            Resultado resultadoNuevo = (Resultado) evt.getNewValue();
+            System.out.println("Se hizo un nuevo pronóstico con este resultado: " + resultadoNuevo.toString());
+            Partido partido = new Partido(resultadoNuevo.getPrimerEquipo(), resultadoNuevo.getSegundoEquipo());
+            this.pronosticosRealizados.put(partido, resultadoNuevo);
         }
     }
 }
