@@ -19,11 +19,11 @@ import java.util.*;
 @Getter
 public class Historial implements PropertyChangeListener {
 
-    private Map<Partido, Resultado> pronosticosRealizados = new HashMap<>();
+    private final Map<Partido, Resultado> pronosticosRealizados = new HashMap<>();
 
     /**
      * Método que se ejecuta cuando se realiza un nuevo pronóstico.
-     * 
+     * <p>
      * Este método se encarga de almacenar el nuevo pronóstico en el historial.
      *
      * @param evt Evento que contiene el nuevo pronóstico (el resultado).

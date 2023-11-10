@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "io.freefair.lombok" version "8.4"
 }
 
 group = 'sportyfy.historial'
@@ -11,11 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.projectlombok:lombok:1.18.28'
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     implementation 'com.github.juanmanuellosada:sportyfy-core:bc1e9e1013'
-
 }
 
 test {
