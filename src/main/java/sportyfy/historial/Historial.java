@@ -7,23 +7,32 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.*;
 
+/**
+ * Clase que representa el historial de pron贸sticos realizados por un usuario.
+ * <p>
+ * Esta clase implementa la interfaz {@link PropertyChangeListener} para poder
+ * ser notificada cuando se realice un nuevo pron贸stico.
+ * <p>
+ * El historial de pronosticos se almacena en un {@link HashMap} donde la clave
+ * es el partido y el valor es el resultado del pron贸stico.
+ */
 @Getter
-public class Historial implements PropertyChangeListener{
-    private Map<Partido, Resultado> pronosticosRealizados;
+public class Historial implements PropertyChangeListener {
 
-    public Historial(){
-        this.pronosticosRealizados = new HashMap<>();
-    }
+    private Map<Partido, Resultado> pronosticosRealizados = new HashMap<>();
 
-//    public  Map<Partido, Resultado> getPronosticosRealizados(){
-//        return this.pronosticosRealizados;
-//    }
-
+    /**
+     * M茅todo que se ejecuta cuando se realiza un nuevo pron贸stico.
+     * 
+     * Este m茅todo se encarga de almacenar el nuevo pron贸stico en el historial.
+     *
+     * @param evt Evento que contiene el nuevo pron贸stico (el resultado).
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if ("resultado".equals(evt.getPropertyName())) {
             Resultado resultadoNuevo = (Resultado) evt.getNewValue();
-            System.out.println("Se hizo un nuevo pron髎tico con este resultado: " + resultadoNuevo.toString());
+            System.out.println("Se hizo un nuevo pron贸stico con este resultado: " + resultadoNuevo.toString());
             Partido partido = new Partido(resultadoNuevo.getPrimerEquipo(), resultadoNuevo.getSegundoEquipo());
             this.pronosticosRealizados.put(partido, resultadoNuevo);
         }
