@@ -5,7 +5,9 @@ import sportyfy.core.entidades.partido.Partido;
 import sportyfy.core.entidades.resultado.Resultado;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,7 +21,7 @@ import java.util.Map;
  */
 @Getter
 public class Historial implements PropertyChangeListener {
-    private final Map<Partido, Resultado> pronosticosRealizados = new HashMap<>();
+    private final Map<Partido, List<Resultado>> pronosticosRealizados = new HashMap<>();
 
     /**
      * Método que se ejecuta cuando se realiza un nuevo pronóstico.
@@ -33,7 +35,17 @@ public class Historial implements PropertyChangeListener {
         if ("resultado".equals(evt.getPropertyName())) {
             Resultado nuevoResultado = (Resultado) evt.getNewValue();
             Partido partido = new Partido(nuevoResultado.getPrimerEquipo(), nuevoResultado.getSegundoEquipo());
-            this.pronosticosRealizados.put(partido, nuevoResultado);
+            if(pronosticosRealizados.get(partido) == null){
+                List<Resultado> pronosticosPorPartido = new ArrayList<>();
+                pronosticosPorPartido.add(nuevoResultado);
+                this.pronosticosRealizados.put(partido, pronosticosPorPartido);
+
+            }
+            else{
+                pronosticosRealizados.get(partido).add(nuevoResultado);
+                this.pronosticosRealizados.put(partido, pronosticosRealizados.get(partido));
+
+            }
         }
     }
 }
