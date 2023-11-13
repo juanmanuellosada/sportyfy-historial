@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.juanmanuellosada:sportyfy-core:bc1e9e1013'
+    implementation 'com.github.juanmanuellosada:sportyfy-core:4f543df9b3'
 }
 
 test {

@@ -5,7 +5,8 @@ import sportyfy.core.entidades.partido.Partido;
 import sportyfy.core.entidades.resultado.Resultado;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Clase que representa el historial de pronósticos realizados por un usuario.
@@ -18,7 +19,6 @@ import java.util.*;
  */
 @Getter
 public class Historial implements PropertyChangeListener {
-
     private final Map<Partido, Resultado> pronosticosRealizados = new HashMap<>();
 
     /**
@@ -31,10 +31,9 @@ public class Historial implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if ("resultado".equals(evt.getPropertyName())) {
-            Resultado resultadoNuevo = (Resultado) evt.getNewValue();
-            System.out.println("Se hizo un nuevo pronóstico con este resultado: " + resultadoNuevo.toString());
-            Partido partido = new Partido(resultadoNuevo.getPrimerEquipo(), resultadoNuevo.getSegundoEquipo());
-            this.pronosticosRealizados.put(partido, resultadoNuevo);
+            Resultado nuevoResultado = (Resultado) evt.getNewValue();
+            Partido partido = new Partido(nuevoResultado.getPrimerEquipo(), nuevoResultado.getSegundoEquipo());
+            this.pronosticosRealizados.put(partido, nuevoResultado);
         }
     }
 }
